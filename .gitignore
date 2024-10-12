@@ -1,0 +1,10 @@
+# Webstorm
+.idea
+
+# Terraform
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+
+# Drawio
+*.drawio.bkp
