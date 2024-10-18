@@ -509,6 +509,10 @@ resource "aws_launch_template" "frontend_launch_template" {
 ##
 ## Auto Scaling Group
 ##
+resource "aws_iam_service_linked_role" "asg_iam_service_linked_role" {
+  aws_service_name = "autoscaling.amazonaws.com"
+}
+
 resource "aws_autoscaling_group" "backend_asg" {
   name = "${var.project_name}-backend-asg"
   launch_template {

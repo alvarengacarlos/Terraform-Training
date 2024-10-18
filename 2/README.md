@@ -49,8 +49,6 @@ tf init
 tf apply -var="project_name=YOUR_PROJECT_NAME"
 ```
 
-- If you receive a cli error about Auto Scaling Group, do not worry, all will work normally.
-
 - Save the file `terraform.tfstate` that contains all information about your provision resources.
 
 - Access the applications using your load balancer `DNS name`. Notice that there is a time for the services start, about 5 minutes after instance is created, so wait a few minutes before make requests. 
