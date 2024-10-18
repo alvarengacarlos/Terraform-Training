@@ -165,7 +165,7 @@ resource "aws_vpc_security_group_egress_rule" "server_sg_allow_all" {
 ##
 ## Instances, Roles, Elastic IP
 ##
-resource "aws_iam_role" "sever_iam_role" {
+resource "aws_iam_role" "server_iam_role" {
   name = "${var.project_name}-server-iam-role"
   description = "Allows EC2 Instance to be accessed through Session Manager"
   assume_role_policy = jsonencode({
@@ -184,12 +184,16 @@ resource "aws_iam_role" "sever_iam_role" {
       }
     ]
   })
-  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
+}
+
+resource "aws_iam_role_policy_attachment" "server_iam_role_policy_attachment" {
+  policy_arn  = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role        = aws_iam_role.server_iam_role.name
 }
 
 resource "aws_iam_instance_profile" "server_iam_instance_profile" {
   name = "${var.project_name}-server-iam-instance-profile"
-  role = aws_iam_role.sever_iam_role.id
+  role = aws_iam_role.server_iam_role.id
 }
 
 resource "aws_instance" "server" {
