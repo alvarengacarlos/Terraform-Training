@@ -1,0 +1,30 @@
+version: 0.0
+
+os: linux
+
+files:
+  - source: /backend.jar
+    destination: /srv/air-chain-services
+
+file_exists_behavior: OVERWRITE
+
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_service.bash
+      timeout: 300
+      runas: root
+
+  BeforeInstall:
+    - location: scripts/run_migrations.bash
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/start_service.bash
+      timeout: 300
+      runas: root
+
+  ValidateService:
+    - location: scripts/self_test.bash
+      timeout: 300
+      runas: root

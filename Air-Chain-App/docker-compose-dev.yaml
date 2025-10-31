@@ -1,0 +1,14 @@
+volumes:
+  mysql_volume:
+
+services:
+  mysql:
+    image: mysql:9.1.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_DATABASE: air_chain_backend_db
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    ports:
+      - 3306:3306

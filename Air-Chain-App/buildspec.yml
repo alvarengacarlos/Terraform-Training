@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DB_PASSWORD: /dev/air-chain/database/root-password
+    DB_ENDPOINT: /dev/air-chain/database/endpoint
+
+phases:
+  pre_build:
+    commands:
+      - docker image build --build-arg DB_PASSWORD=$DB_PASSWORD --build-arg DB_ENDPOINT=$DB_ENDPOINT -t air-chain-build .
+
+  build:
+    commands:
+      - docker container create --name air-chain-build air-chain-build
+
+  post_build:
+    commands:
+      - docker container cp air-chain-build:/artifacts/backend.tar.gz .
+      - docker container cp air-chain-build:/artifacts/frontend.tar.gz .
+
+artifacts:
+  files:
+    - backend.tar.gz
+    - frontend.tar.gz

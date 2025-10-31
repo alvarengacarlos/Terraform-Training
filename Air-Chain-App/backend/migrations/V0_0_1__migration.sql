@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS histories (
+    id VARCHAR(36) NOT NULL DEFAULT (uuid()),
+    fingerprint VARCHAR(36) NOT NULL,
+    type ENUM('FIX', 'MAINTENANCE') NOT NULL,
+    description VARCHAR(3000) NOT NULL,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);

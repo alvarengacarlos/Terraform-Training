@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "b77a0274-4655-40d0-97fe-5ab230d534ba",
+		"name": "Air Chain App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30460958"
+	},
+	"item": [
+		{
+			"name": "histories",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fingerprint\": \"{{$randomUUID}}\",\r\n    \"type\": \"FIX\",\r\n    \"description\": \"Creating something\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/histories",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"histories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/histories?page=1&pageSize=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"histories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/histories/:historyId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"histories",
+								":historyId"
+							],
+							"variable": [
+								{
+									"key": "historyId",
+									"value": "ab77ce9e-cfba-11ef-85f6-0242ac180002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by fingerprint",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/histories/fingerprint/:fingerprint",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"histories",
+								"fingerprint",
+								":fingerprint"
+							],
+							"variable": [
+								{
+									"key": "fingerprint",
+									"value": "b34c4044-88fc-4a71-8105-9e3e639c1621"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
